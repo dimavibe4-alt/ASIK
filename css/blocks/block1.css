@@ -1,0 +1,421 @@
+/* Блок 1 в стиле Behance */
+.block1-container {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-parameters {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Аккордеон - минималистичный */
+.accordion {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.accordion-item {
+    margin-bottom: 8px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item:hover {
+    border-color: #147efb;
+    box-shadow: 0 2px 8px rgba(20, 126, 251, 0.1);
+}
+
+.accordion-button {
+    background: white;
+    color: #333333;
+    padding: 18px 24px;
+    font-weight: 500;
+    font-size: 13px;
+    border: none;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.3px;
+}
+
+.accordion-button:hover {
+    background: #fafafa;
+    border-left-color: #e0e0e0;
+}
+
+.accordion-button.active {
+    background: #f5f9ff;
+    border-left-color: #147efb;
+    font-weight: 600;
+}
+
+.accordion-icon {
+    font-size: 10px;
+    color: #767676;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(90deg);
+    color: #147efb;
+}
+
+.accordion-title {
+    flex: 1;
+    font-weight: inherit;
+    color: inherit;
+}
+
+.accordion-content {
+    padding: 24px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Формы - чистые сетки */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.form-group {
+    margin-bottom: 0;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 13px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: white;
+    color: #333333;
+    transition: all 0.25s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #147efb;
+    box-shadow: 0 0 0 2px rgba(20, 126, 251, 0.1);
+}
+
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23767676' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Пресеты - как карточки портфолио */
+.preset-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.preset-option {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    position: relative;
+}
+
+.preset-option:hover {
+    border-color: #147efb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.preset-option.active {
+    border-color: #147efb;
+    background: #f5f9ff;
+    box-shadow: 0 4px 12px rgba(20, 126, 251, 0.15);
+}
+
+.preset-option.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #147efb;
+}
+
+.preset-name {
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+}
+
+.preset-description {
+    font-size: 11px;
+    color: #767676;
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+}
+
+/* Переключатель утепления */
+.insulation-toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Динамические элементы */
+.dynamic-item {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.dynamic-item:hover {
+    border-color: #147efb;
+    background: #f5f9ff;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    transition: all 0.25s ease;
+    font-weight: bold;
+}
+
+.remove-btn:hover {
+    background: #ff5252;
+    transform: scale(1.1);
+}
+
+/* Кнопки добавления */
+.add-button {
+    background: white;
+    color: #147efb;
+    border: 1px solid #147efb;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    letter-spacing: 0.3px;
+}
+
+.add-button:hover {
+    background: #147efb;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(20, 126, 251, 0.2);
+}
+
+.add-button:active {
+    transform: translateY(0);
+}
+
+/* Индикаторы материалов */
+.material-indicator {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #666666;
+    margin-top: 8px;
+    border-left: 3px solid #147efb;
+}
+
+.material-value {
+    font-weight: 600;
+    color: #147efb;
+    margin-left: 4px;
+}
+
+/* Информационные карточки */
+.info-card {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 24px;
+    border-left: 4px solid #147efb;
+}
+
+.info-card h4 {
+    color: #333333;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.info-card p {
+    color: #666666;
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.1px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .preset-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .accordion-button {
+        padding: 16px 20px;
+        font-size: 12px;
+    }
+    
+    .accordion-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-button {
+        padding: 14px 16px;
+    }
+    
+    .form-group label {
+        font-size: 10px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}
+
+/* Темная тема для блока 1 */
+@media (prefers-color-scheme: dark) {
+    .accordion-item {
+        background: #2a2a2a;
+        border-color: #444444;
+    }
+    
+    .accordion-button {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+    
+    .accordion-button:hover {
+        background: #333333;
+    }
+    
+    .accordion-button.active {
+        background: rgba(77, 171, 247, 0.1);
+    }
+    
+    .form-group input,
+    .form-group select {
+        background: #333333;
+        border-color: #444444;
+        color: #e0e0e0;
+    }
+    
+    .preset-option {
+        background: #2a2a2a;
+        border-color: #444444;
+    }
+    
+    .dynamic-item {
+        background: #333333;
+        border-color: #444444;
+    }
+}
+/* Стили для чекбоксов */
+.form-group input[type="checkbox"] {
+    width: auto;                /* убираем растяжение */
+    height: auto;
+    appearance: auto;           /* возвращаем стандартный вид */
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    margin-right: 8px;          /* отступ от текста */
+}
+
+/* Если нужен кастомный дизайн, можно оформить через псевдоэлементы, 
+   но для простоты используем стандартный */
