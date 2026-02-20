@@ -1,0 +1,208 @@
+/* Стили окон Windows 98 - переработанная версия */
+/* Улучшена отрисовка, устранены наложения */
+
+:root {
+    --window-border: 2px;
+    --header-height: 22px;
+    --content-padding: 4px;
+    --scrollbar-width: 12px;
+}
+
+/* Основное окно */
+.window {
+    background-color: #c0c0c0;
+    border: var(--window-border) solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    padding: 1px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Заголовок окна */
+.window-header {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: white;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    min-height: var(--header-height);
+    max-height: var(--header-height);
+    border-bottom: 1px solid #404040;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.2px;
+}
+
+.window-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+}
+
+/* Контент окна */
+.window-content {
+    padding: var(--content-padding);
+    font-size: 11px;
+    color: #000;
+    flex: 1;
+    overflow: auto;
+    min-height: 0;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px inset;
+    margin: 1px;
+    position: relative;
+}
+
+/* Эффект объема для контента */
+.window-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    box-shadow: 
+        inset 1px 1px 0px #ffffff,
+        inset -1px -1px 0px #808080;
+    z-index: 1;
+}
+
+/* Расположение блоков */
+#block1 {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+}
+
+#right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    min-height: 0;
+}
+
+#block2 {
+    flex: 0 0 40%;
+    min-height: 0;
+}
+
+#block3 {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Кастомный скроллбар для окон */
+.window-content::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+}
+
+.window-content::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border: 1px solid #808080;
+    box-shadow: inset 1px 1px 0px #dfdfdf, inset -1px -1px 0px #404040;
+}
+
+.window-content::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    min-height: 20px;
+}
+
+.window-content::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
+
+.window-content::-webkit-scrollbar-button {
+    background: #c0c0c0;
+    border: 1px solid #808080;
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+}
+
+.window-content::-webkit-scrollbar-corner {
+    background: #c0c0c0;
+    border: 1px solid #808080;
+}
+
+/* Для Firefox */
+.window-content {
+    scrollbar-width: thin;
+    scrollbar-color: #c0c0c0 #dfdfdf;
+}
+
+/* Тени и объем для окон */
+.window::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    pointer-events: none;
+    box-shadow: 
+        inset 1px 1px 0px rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Активное состояние окна */
+.window:focus-within .window-header {
+    background: linear-gradient(90deg, #0000a0, #20a0ff);
+}
+
+/* Адаптивность окон */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 20px;
+        --content-padding: 3px;
+    }
+    
+    .window-header {
+        font-size: 11px;
+        padding: 1px 3px;
+    }
+    
+    .window-content {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --header-height: 18px;
+        --content-padding: 2px;
+    }
+    
+    .window-header {
+        font-size: 10px;
+        padding: 1px 2px;
+    }
+    
+    .window-content {
+        font-size: 9px;
+    }
+}
