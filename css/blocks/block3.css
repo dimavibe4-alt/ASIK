@@ -1,0 +1,370 @@
+/* Блок 3 в стиле Behance (как блок 1) – финальная версия */
+
+.calc-container {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.calc-title {
+    color: #333333;
+    margin: 0 0 16px 0;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 12px;
+    line-height: 1.2;
+    text-align: left;
+    letter-spacing: 0.3px;
+}
+
+.calc-results {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    background: transparent;
+    border: none;
+}
+
+/* Вкладки */
+.calc-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--behance-border, #e0e0e0);
+    padding-bottom: 4px;
+}
+
+.calc-tab {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--behance-text-light, #666666);
+    cursor: pointer;
+    transition: var(--behance-transition, all 0.25s ease);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calc-tab:hover {
+    color: var(--behance-accent, #147efb);
+    border-bottom-color: var(--behance-accent-light, #e3f2fd);
+}
+
+.calc-tab.active {
+    color: var(--behance-accent, #147efb);
+    border-bottom-color: var(--behance-accent, #147efb);
+}
+
+/* Сетка результатов (вертикальное расположение) */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+}
+
+.result-item {
+    background: white;
+    border: 1px solid var(--behance-border, #e0e0e0);
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: var(--behance-transition, all 0.25s ease);
+    cursor: help;
+    min-height: 70px;
+}
+
+.result-item:hover {
+    border-color: var(--behance-accent, #147efb);
+    box-shadow: 0 2px 8px rgba(20,126,251,0.1);
+}
+
+.result-label {
+    font-weight: 600;
+    color: var(--behance-text-light, #666666);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    word-break: break-word;
+    line-height: 1.3;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    max-width: 100%;
+}
+
+.result-value {
+    color: var(--behance-accent, #147efb);
+    font-family: 'SF Mono', monospace;
+    font-weight: 600;
+    font-size: 14px;
+    word-break: break-word;
+    line-height: 1.3;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    width: 100%;
+}
+
+/* Статусы */
+.result-status {
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.status-ready {
+    background: #e6f7e6;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.status-calculating {
+    background: #fff8e1;
+    color: #b26a00;
+    border: 1px solid #ffe082;
+}
+
+.status-error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* Кнопки */
+.calc-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-shrink: 0;
+}
+
+.calc-button {
+    flex: 1;
+    background: white;
+    color: var(--behance-accent, #147efb);
+    border: 1px solid var(--behance-accent, #147efb);
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    min-height: 36px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: var(--behance-transition, all 0.25s ease);
+    letter-spacing: 0.3px;
+}
+
+.calc-button:hover {
+    background: var(--behance-accent, #147efb);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(20,126,251,0.2);
+}
+
+.calc-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.calc-button-primary {
+    background: var(--behance-accent, #147efb);
+    color: white;
+}
+
+.calc-button-primary:hover {
+    background: #0c5bbf;
+    border-color: #0c5bbf;
+}
+
+/* Прогресс (не используется, но оставим) */
+.calc-progress {
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin: 12px 0;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.calc-progress-bar {
+    height: 100%;
+    background: var(--behance-accent, #147efb);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Детали (не используется, но оставим) */
+.calc-details {
+    margin-top: 16px;
+    padding: 16px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 12px;
+    flex-shrink: 0;
+    border-left: 4px solid var(--behance-accent, #147efb);
+}
+
+.calc-details-title {
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .calc-title {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 8px;
+    }
+
+    .result-item {
+        padding: 10px;
+        min-height: 60px;
+    }
+
+    .result-label {
+        font-size: 10px;
+    }
+
+    .result-value {
+        font-size: 12px;
+    }
+
+    .calc-tab {
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+    .calc-button {
+        font-size: 11px;
+        padding: 8px 12px;
+        min-height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calc-title {
+        font-size: 13px;
+    }
+
+    .result-label {
+        font-size: 9px;
+    }
+
+    .result-value {
+        font-size: 11px;
+    }
+
+    .calc-button {
+        font-size: 10px;
+    }
+}
+
+/* Тёмная тема */
+@media (prefers-color-scheme: dark) {
+    .calc-container {
+        background: #2a2a2a;
+    }
+
+    .calc-title {
+        color: #e0e0e0;
+        border-bottom-color: #444444;
+    }
+
+    .result-item {
+        background: #2a2a2a;
+        border-color: #444444;
+    }
+
+    .result-item:hover {
+        border-color: #4dabf7;
+        box-shadow: 0 2px 8px rgba(77,171,247,0.2);
+    }
+
+    .result-label {
+        color: #b0b0b0;
+    }
+
+    .result-value {
+        color: #4dabf7;
+    }
+
+    .status-ready {
+        background: #1e3a2a;
+        color: #a5d6a7;
+        border-color: #2e7d32;
+    }
+
+    .status-calculating {
+        background: #4a3b1e;
+        color: #ffe082;
+        border-color: #b26a00;
+    }
+
+    .status-error {
+        background: #4a2323;
+        color: #ef9a9a;
+        border-color: #c62828;
+    }
+
+    .calc-button {
+        background: transparent;
+        color: #4dabf7;
+        border-color: #4dabf7;
+    }
+
+    .calc-button:hover {
+        background: #4dabf7;
+        color: #2a2a2a;
+    }
+
+    .calc-button-primary {
+        background: #4dabf7;
+        color: #2a2a2a;
+    }
+
+    .calc-button-primary:hover {
+        background: #147efb;
+        border-color: #147efb;
+    }
+
+    .calc-progress {
+        background: #444444;
+    }
+
+    .calc-details {
+        background: #333333;
+        border-color: #444444;
+        border-left-color: #4dabf7;
+    }
+
+    .calc-details-title {
+        color: #e0e0e0;
+    }
+}
