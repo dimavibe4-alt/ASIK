@@ -1,0 +1,162 @@
+/* Адаптивные стили с исправлением переполнения */
+
+/* Контейнер для кнопок переключения */
+.view-toggle {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 1000;
+    background: #000080;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    padding: 4px;
+}
+
+.toggle-button {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    padding: 3px 6px;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    margin: 0 2px;
+    color: #000;
+    white-space: nowrap;
+}
+
+.toggle-button.active {
+    background: #000080;
+    color: white;
+    border-color: #404040 #dfdfdf #dfdfdf #404040;
+}
+
+/* Для планшетов (768px - 992px) */
+@media (max-width: 992px) and (min-width: 769px) {
+    body {
+        padding: 4px;
+    }
+    
+    #app {
+        gap: 0.4%;
+    }
+    
+    #block1 {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+    
+    #right-container {
+        flex: 1;
+    }
+    
+    #block2 {
+        flex: 0 0 45%;
+    }
+    
+    #block3 {
+        flex: 1;
+    }
+    
+    .form-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 4px;
+    }
+}
+
+/* Для мобильных устройств (до 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 2px;
+    }
+    
+    .view-toggle {
+        display: flex;
+        gap: 2px;
+    }
+    
+    #app {
+        flex-direction: column;
+        gap: 0.5%;
+    }
+    
+    #block1 {
+        flex: 0 0 49% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    #block2 {
+        display: none;
+    }
+    
+    #right-container {
+        flex: 0 0 49% !important;
+        width: 100% !important;
+        gap: 0;
+    }
+    
+    #block3 {
+        height: 100%;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .section-header {
+        flex-wrap: wrap;
+    }
+    
+    .add-button {
+        margin-top: 4px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+    
+    body {
+        padding: 1px;
+    }
+    
+    .window-header {
+        font-size: 11px;
+        padding: 2px 4px;
+    }
+    
+    .window-content {
+        padding: 4px;
+        font-size: 11px;
+    }
+    
+    .view-toggle {
+        top: 2px;
+        right: 4px;
+        padding: 2px;
+    }
+    
+    .toggle-button {
+        padding: 2px 4px;
+        font-size: 10px;
+    }
+    
+    .result-item {
+        flex-wrap: wrap;
+        padding: 4px;
+    }
+    
+    .result-label {
+        width: 100%;
+        margin-bottom: 2px;
+    }
+    
+    .result-value {
+        width: 100%;
+        text-align: left;
+    }
+}
