@@ -1,0 +1,405 @@
+/* Behance Style - чистый, профессиональный, с акцентом на типографику и пространство */
+@import url('blocks/block1.css');
+@import url('blocks/block2.css');
+@import url('blocks/block3.css');
+
+/* Сброс отступов и box-sizing для всех элементов */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Основные переменные */
+:root {
+    --behance-bg: #f8f9fa;
+    --behance-surface: #ffffff;
+    --behance-primary: #2a2a2a;
+    --behance-secondary: #767676;
+    --behance-accent: #147efb;
+    --behance-accent-light: #e3f2fd;
+    --behance-border: #e0e0e0;
+    --behance-text: #333333;
+    --behance-text-light: #666666;
+    
+    --behance-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --behance-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --behance-radius: 0;
+    --behance-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+    height: 100%;              /* занимаем всю высоту окна */
+    overflow: hidden;          /* отключаем глобальный скролл */
+}
+
+body {
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 13px;
+    background: var(--behance-bg);
+    color: var(--behance-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 24px;             /* отступы внутри body, не увеличивают общую высоту благодаря box-sizing */
+}
+
+#app {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 24px;
+    height: 100%;              /* занимает всю высоту body с учётом padding */
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: hidden;          /* дополнительная защита от глобального скролла */
+}
+
+/* Окна - минималистичные квадратные */
+.window {
+    background: var(--behance-surface);
+    border-radius: var(--behance-radius);
+    box-shadow: var(--behance-shadow);
+    border: 1px solid var(--behance-border);
+    overflow: hidden;          /* скрываем лишнее, скролл будет только внутри .window-content */
+    transition: var(--behance-transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;              /* окно занимает всю высоту грид-ячейки */
+}
+
+.window:hover {
+    box-shadow: var(--behance-shadow-lg);
+}
+
+.window-header {
+    background: var(--behance-surface);
+    color: var(--behance-primary);
+    padding: 20px 24px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--behance-accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    flex-shrink: 0;            /* не сжимается */
+}
+
+.window-content {
+    flex: 1;                   /* занимает всё оставшееся место */
+    padding: 24px;
+    overflow-y: auto;          /* скролл только при необходимости */
+    background: var(--behance-surface);
+}
+
+#block1 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#right-container {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;              /* занимает всю высоту ячейки */
+}
+
+#block2 {
+    flex: 1.7;                   /* 2/3 от доступной высоты */
+    min-height: 0;             /* разрешаем сжиматься меньше контента (важно для flex) */
+}
+
+#block3 {
+    flex: 1.3;                   /* 1/3 от доступной высоты */
+    min-height: 0;             /* разрешаем сжиматься */
+}
+
+/* Скроллбар - тонкий (будет работать внутри .window-content) */
+.window-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.window-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.window-content::-webkit-scrollbar-thumb {
+    background: var(--behance-border);
+    border-radius: 2px;
+}
+
+.window-content::-webkit-scrollbar-thumb:hover {
+    background: var(--behance-secondary);
+}
+
+/* Кнопки - плоские с тонкой рамкой */
+button, 
+input[type="button"],
+input[type="submit"],
+.btn {
+    background: var(--behance-surface);
+    color: var(--behance-primary);
+    border: 1px solid var(--behance-border);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--behance-transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+.btn:hover {
+    border-color: var(--behance-accent);
+    color: var(--behance-accent);
+    background: var(--behance-accent-light);
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* Поля ввода - минималистичные */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+    background: white;
+    border: 1px solid var(--behance-border);
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: var(--behance-text);
+    transition: var(--behance-transition);
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--behance-accent);
+    box-shadow: 0 0 0 2px rgba(20, 126, 251, 0.1);
+}
+
+/* Переключатель расширенного режима - плоский */
+.advanced-toggle {
+    background: var(--behance-accent-light);
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 1px solid var(--behance-border);
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--behance-text);
+    font-size: 13px;
+}
+
+.toggle-slider {
+    width: 48px;
+    height: 24px;
+    background: var(--behance-border);
+    border-radius: 12px;
+    position: relative;
+    transition: var(--behance-transition);
+    flex-shrink: 0;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: var(--behance-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input[type="checkbox"]:checked + .toggle-slider {
+    background: var(--behance-accent);
+}
+
+input[type="checkbox"]:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+
+/* Аккордеон - минималистичный (стили из block1.css) */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.accordion-item {
+    background: white;
+    border: 1px solid var(--behance-border);
+    border-radius: 0;
+    overflow: hidden;
+    transition: var(--behance-transition);
+}
+
+.accordion-item:hover {
+    border-color: var(--behance-accent);
+}
+
+.accordion-button {
+    width: 100%;
+    background: white;
+    color: var(--behance-text);
+    border: none;
+    padding: 18px 24px;
+    font-weight: 500;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--behance-transition);
+    border-bottom: 1px solid transparent;
+}
+
+.accordion-button:hover {
+    background: #fafafa;
+    border-bottom-color: var(--behance-border);
+}
+
+.accordion-icon {
+    font-size: 11px;
+    transition: transform 0.3s ease;
+    color: var(--behance-secondary);
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(90deg);
+    color: var(--behance-accent);
+}
+
+.accordion-content {
+    padding: 24px;
+    background: white;
+    border-top: 1px solid var(--behance-border);
+    animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Формы - чистые линии */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--behance-text);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tooltips - минималистичные */
+.tooltip-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    background: var(--behance-secondary);
+    color: white;
+    border-radius: 50%;
+    font-size: 9px;
+    margin-left: 6px;
+    cursor: help;
+    transition: var(--behance-transition);
+}
+
+.tooltip-icon:hover {
+    background: var(--behance-accent);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    #app {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        overflow-y: auto;      /* на узких экранах разрешаем вертикальный скролл всей страницы */
+    }
+    
+    #block1 {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    
+    #right-container {
+        grid-row: 2;
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+    
+    .window-header {
+        padding: 16px 20px;
+    }
+    
+    .window-content {
+        padding: 20px;
+    }
+}
+
+/* Темная тема для Behance */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --behance-bg: #1a1a1a;
+        --behance-surface: #2a2a2a;
+        --behance-primary: #ffffff;
+        --behance-secondary: #888888;
+        --behance-accent: #4dabf7;
+        --behance-accent-light: rgba(77, 171, 247, 0.1);
+        --behance-border: #444444;
+        --behance-text: #e0e0e0;
+        --behance-text-light: #aaaaaa;
+    }
+}
